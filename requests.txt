@@ -1,4 +1,5 @@
 django
+django-import-export
 requests
 ollama
 psycopg2-binary
