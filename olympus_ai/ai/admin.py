@@ -17,10 +17,10 @@ except:
 
 class ToolAdmin(ImportExportModelAdmin):
   readonly_fields = ('created_at','updated_at')
-  list_display = ('name','category','version')
-  search_fields = ('name','category','version')
-  ordering = ('name','category','version')
-  list_filter = ('name','category','version')
+  list_display = ('name','version','category')
+  search_fields = ('name','version','category')
+  ordering = ('name','version','category')
+  list_filter = ('name','version','category')
   fields=('name',('category','version'),'source_code',('created_at','updated_at'))
 
 try:
@@ -34,7 +34,7 @@ class LLMConfigAdmin(ImportExportModelAdmin):
   search_fields = ('internal_name','temperature','enabled')
   ordering = ('internal_name','temperature','enabled')
   list_filter = ('internal_name','temperature','enabled')
-  fields=('internal_name',('temperature','enabled'),('created_at','updated_at'))
+  fields=(('llm','internal_name'),'tools',('temperature','enabled'),('created_at','updated_at'))
 
 try:
   admin.site.register(LLMConfig, LLMConfigAdmin)

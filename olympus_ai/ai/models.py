@@ -14,6 +14,9 @@ class LLM(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return f"{self.model_name}:{self.version_tag}-{self.model_quantization}"
+
 class Tool(models.Model):
     name = models.CharField(max_length=200)
     category = models.CharField(max_length=200, choices=TOOL_CATEGORIES)
@@ -21,6 +24,9 @@ class Tool(models.Model):
     source_code = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.name}:{self.version}"
 
 class LLMConfig(models.Model):
     internal_name = models.CharField(max_length=200, blank=True)
@@ -31,4 +37,9 @@ class LLMConfig(models.Model):
     tools = models.ManyToManyField(Tool)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.internal_name}@{self.llm.model_name}"
+    
+
     
